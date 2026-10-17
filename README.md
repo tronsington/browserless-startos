@@ -15,13 +15,13 @@ make x86   # produces browserless_x86_64.s9pk
 
 ## What this package is
 
-| | |
-| --- | --- |
-| Upstream image | `ghcr.io/browserless/chrome@sha256:830357995d37c2cee7441d5ba640c426cc8e0112aaba05ce742ea5ecabbc69da` (v2.57.1, digest-pinned) |
-| Architectures | **x86_64 only** — upstream's chrome flavour publishes amd64 alone. The sibling `ghcr.io/browserless/chromium` flavour *is* multi-arch; if this package ever ships aarch64 it switches image at the manifest, nothing else. |
-| Interface | single HTTP interface on port 3000 (API + dashboard), `browserless.<box>.local` |
-| Auth | browserless's own `TOKEN` env, fed from an install-generated random token in `store.json`; every request needs `?token=…`. Reveal the token with the **Show API Token** action. |
-| State | none — browserless is fully stateless. The `main` volume holds only the package's own `store.json`. |
+|                |                                                                                                                                                                                                                            |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Upstream image | `ghcr.io/browserless/chrome@sha256:830357995d37c2cee7441d5ba640c426cc8e0112aaba05ce742ea5ecabbc69da` (v2.57.1, digest-pinned)                                                                                              |
+| Architectures  | **x86_64 only** — upstream's chrome flavour publishes amd64 alone. The sibling `ghcr.io/browserless/chromium` flavour _is_ multi-arch; if this package ever ships aarch64 it switches image at the manifest, nothing else. |
+| Interface      | single HTTP interface on port 3000 (API + dashboard), `browserless.<box>.local`                                                                                                                                            |
+| Auth           | browserless's own `TOKEN` env, fed from an install-generated random token in `store.json`; every request needs `?token=…`. Reveal the token with the **Show API Token** action.                                            |
+| State          | none — browserless is fully stateless. The `main` volume holds only the package's own `store.json`.                                                                                                                        |
 
 There is no Dockerfile: the package wraps the upstream image directly (same
 recipe as `buzz-relay`'s dockerTag pinning). The whole package is the manifest

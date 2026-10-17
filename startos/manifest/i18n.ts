@@ -1,9 +1,14 @@
 export const short = {
-  en_US: 'Headless Chromium as a service — REST and WebSocket APIs for browser automation',
-  es_ES: 'Chromium sin interfaz gráfica como servicio — API REST y WebSocket para automatización de navegador',
-  de_DE: 'Headless-Chromium als Dienst — REST- und WebSocket-APIs für Browserautomatisierung',
-  pl_PL: 'Headless Chromium jako usługa — API REST i WebSocket do automatyzacji przeglądarki',
-  fr_FR: 'Chromium headless en service — API REST et WebSocket pour l’automatisation du navigateur',
+  en_US:
+    'Headless Chromium as a service — REST and WebSocket APIs for browser automation',
+  es_ES:
+    'Chromium sin interfaz gráfica como servicio — API REST y WebSocket para automatización de navegador',
+  de_DE:
+    'Headless-Chromium als Dienst — REST- und WebSocket-APIs für Browserautomatisierung',
+  pl_PL:
+    'Headless Chromium jako usługa — API REST i WebSocket do automatyzacji przeglądarki',
+  fr_FR:
+    'Chromium headless en service — API REST et WebSocket pour l’automatisation du navigateur',
 }
 
 export const long = {

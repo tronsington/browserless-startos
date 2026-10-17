@@ -8,7 +8,9 @@ export const main = sdk.setupMain(async ({ effects }) => {
 
   // Mapped read: only the token feeds daemon env, so nothing else can ever
   // re-run setupMain and bounce the daemon.
-  const store = await storeJson.read((s) => ({ apiToken: s.apiToken })).const(effects)
+  const store = await storeJson
+    .read((s) => ({ apiToken: s.apiToken }))
+    .const(effects)
   const apiToken = store?.apiToken ?? ''
 
   /**
