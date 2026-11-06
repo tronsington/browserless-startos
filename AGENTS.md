@@ -32,3 +32,13 @@ docs.start9.com/packaging) — same discipline as the sibling packages.
   validation, not a comment-filled error.
 - `version` in `current.ts` moves with upstream's release tag (see
   UPDATING.md). The `:N` suffix is the package build number.
+
+## REST route prefix (verified on a real install, 2026-11-06)
+- This image mounts its REST handlers under **`/chrome/…`** (`build/routes/chrome/http/*.post.js`,
+  each `path = HTTPRoutes.chromeContent` etc.), so `/chrome/content`, `/chrome/screenshot`,
+  `/chrome/pdf`, `/chrome/function`, `/chrome/playwright`, `/chrome/scrape`, `/chrome/download`,
+  `/chrome/performance` work and the bare `/content`, `/screenshot` from browserless's public docs
+  return 404. The root URL is also 404 — the docs page is `/docs/`. Live proof on the box:
+  `/chrome/content {url: example.com}` → 200 with real HTML, `/chrome/screenshot` → 200 image/png,
+  `/json/version` → `Chrome/155.0.8059.84`, `/pressure` → `isAvailable: true`.
+- Keep `instructions.md` in step with that: a 404 here reads like a broken package, not a path.
