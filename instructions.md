@@ -10,11 +10,37 @@ sessions — without installing Chrome anywhere.
 1. Open the **Browserless** service and run the **Show API Token** action.
    Copy the token.
 2. Give your client the address from the service's **Interfaces** section,
-   with the token appended:
-   `ws://<that-address>?token=<token>` (Puppeteer/Playwright), or
-   `https://<that-address>/screenshot?token=<token>` for plain REST routes.
-3. The same address in a browser opens the management dashboard (live
-   sessions, load).
+   with the token appended.
+
+**Puppeteer / Playwright, or any CDP client:**
+
+```
+ws://<that-address>?token=<token>
+```
+
+**REST calls — note the `/chrome/` prefix.** This image (browserless 2.57.1)
+mounts its REST routes under `/chrome/`, so the paths in browserless's public
+docs (`/screenshot`, `/content`, …) answer **404** here. The working form is:
+
+```
+POST https://<that-address>/chrome/screenshot?token=<token>
+POST https://<that-address>/chrome/content?token=<token>
+```
+
+Available routes: `/chrome/content`, `/chrome/screenshot`, `/chrome/pdf`,
+`/chrome/function`, `/chrome/playwright`, `/chrome/scrape`, `/chrome/download`,
+`/chrome/performance`. Body and options match the upstream route docs.
+
+**Checks that are useful when wiring a client:**
+
+```
+GET https://<that-address>/pressure?token=<token>      # load / availability
+GET https://<that-address>/json/version?token=<token>  # Chrome version
+GET https://<that-address>/docs/?token=<token>         # route docs served by the image
+```
+
+The root URL is **not** a dashboard on this build (it returns 404); use the
+routes above.
 
 Without a valid `?token=…` every call is rejected with a 401-style error.
 There is no way to run this service token-free through this package; an open
